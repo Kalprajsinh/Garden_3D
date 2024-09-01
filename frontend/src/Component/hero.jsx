@@ -40,76 +40,77 @@ function Hero() {
 
     const plants = [
         {
-            name: "",
+            name: "Anise",
             position: useMemo(() => convertToCartesian(earthRadius + 0.1, Math.PI / 1, Math.PI / 1), []),
             model: <Plant1 />,
-            description: "",
+            description: "<strong>Scientific Name:</strong> Pimpinella anisum<br/><strong>Habitat:</strong> Native to the eastern Mediterranean region and Southwest Asia.<br/><strong>Medicinal Uses:</strong> Relieves digestive issues, reduces gas, and improves appetite. It is also known for its calming effects and can help with respiratory conditions.<br/><strong>Cultivation:</strong> Prefers well-drained soil with a pH of 6.0 to 7.0 and full sun. Anise can be grown from seeds and requires a warm growing season of at least 120 frost-free days.",
             rotation: [Math.PI / -2, 0, 0],
         },
         {
-            name: "",
+            name: "Caraway",
             position: useMemo(() => convertToCartesian(earthRadius + 0.3, Math.PI/4, Math.PI / 2), []),
             model: <Plant2 />,
-            description: ".",
+            description: "<strong>Scientific Name:</strong> Carum carvi<br/><strong>Habitat:</strong> Native to Europe and Western Asia.<br/><strong>Medicinal Uses:</strong> Aids digestion, relieves bloating, and reduces gas. It is also used to stimulate appetite and has anti-inflammatory properties.<br/><strong>Cultivation:</strong> Prefers well-drained soil and full sun; can be grown from seeds. Caraway requires a temperate climate and a growing season of about 90 to 100 days.",
             rotation: [Math.PI / 2, Math.PI / 4, Math.PI / -2],
         },
         {
-            name: "",
+            name: "Chamomile",
             position: useMemo(() => convertToCartesian(earthRadius + 0.1, Math.PI / 2, Math.PI / 2), []),
             model: <Plant3 />,
-            description: "",
+            description: "<strong>Scientific Name:</strong> Matricaria chamomilla<br/><strong>Habitat:</strong> Native to Europe and Western Asia.<br/><strong>Medicinal Uses:</strong> Soothes digestive issues, reduces inflammation, and promotes relaxation. Chamomile is often used as a tea to help with sleep and anxiety.<br/><strong>Cultivation:</strong> Grows well in well-drained soil and prefers full sun. Chamomile can be grown from seeds and is tolerant of various soil types.",
             rotation: [Math.PI / 3, Math.PI / 2, Math.PI / -2],
         },
         {
-            name: "",
+            name: "Coriander",
             position: useMemo(() => convertToCartesian(earthRadius + 0.1, Math.PI / 4, Math.PI / 8), []),
             model: <Plant4 />,
-            description: ".",
+            description: "<strong>Scientific Name:</strong> Coriandrum sativum<br/><strong>Habitat:</strong> Native to Southern Europe and Western Asia.<br/><strong>Medicinal Uses:</strong> Aids digestion, reduces bloating, and has anti-inflammatory properties. The seeds are also used for their antioxidant effects.<br/><strong>Cultivation:</strong> Grows well in well-drained soil and prefers full sun. Coriander can be grown from seeds and thrives in cooler weather.",
             rotation: [Math.PI / 2, 0, 0],
         },
         {
-            name: " Plant",
+            name: "Fennel",
             position: useMemo(() => convertToCartesian(earthRadius + 0.2, Math.PI/-5, Math.PI / -4), []),
             model: <Plant5 />,
-            description: ".",
-            rotation: [Math.PI/2, Math.PI, -0.7],
+            description: "<strong>Scientific Name:</strong> Foeniculum vulgare<br/><strong>Habitat:</strong> Native to the Mediterranean region.<br/><strong>Medicinal Uses:</strong> Reduces bloating, gas, and digestive discomfort. Fennel is also known for its anti-inflammatory and antioxidant properties.<br/><strong>Cultivation:</strong> Prefers full sun and well-drained soil; can be grown from seeds. Fennel requires a warm growing season and can be sensitive to frost.",
+            rotation: [Math.PI / 2, Math.PI, -0.7],
         },
         {
-            name: " Plant",
+            name: "Ginger",
             position: useMemo(() => convertToCartesian(earthRadius + 0.2, Math.PI/-6, Math.PI/-1.5), []),
             model: <Plant6 />,
-            description: "",
-            rotation: [Math.PI/2, 0, 2],
+            description: "<strong>Scientific Name:</strong> Zingiber officinale<br/><strong>Habitat:</strong> Native to Southeast Asia.<br/><strong>Medicinal Uses:</strong> Reduces inflammation, improves blood circulation, and has anti-nausea properties. Ginger is commonly used to alleviate digestive issues and motion sickness.<br/><strong>Cultivation:</strong> Thrives in warm, humid climates and requires rich, well-drained soil. Ginger is typically grown from rhizomes rather than seeds.",
+            rotation: [Math.PI / 2, 0, 2],
         },
         {
-            name: "Plant",
+            name: "Cardamom",
             position: useMemo(() => convertToCartesian(earthRadius + 0.3, Math.PI*3, 5), []),
             model: <Plant7 />,
-            description: "<strong>Scientific Name:</strong> Not Specified<br/><strong>Habitat:</strong> Not Specified<br/><strong>Medicinal Uses:</strong> Not Specified<br/><strong>Cultivation:</strong> Not Specified",
+            description: "<strong>Scientific Name:</strong> Elettaria cardamomum<br/><strong>Habitat:</strong> Native to the Western Ghats of Southern India.<br/><strong>Medicinal Uses:</strong> Aids digestion, reduces gas, and has anti-inflammatory properties. Cardamom is also known for its antioxidant effects and can help with respiratory issues.<br/><strong>Cultivation:</strong> Thrives in warm, humid climates and requires rich, well-drained soil. Cardamom is typically grown in shaded areas under taller plants.",
             rotation: [Math.PI, Math.PI/6, Math.PI/2],
         },
         {
-            name: "Plant",
+            name: "Cumin",
             position: useMemo(() => convertToCartesian(earthRadius + 0.3, Math.PI/-3, Math.PI / 4), []),
             model: <Plant8 />,
-            description: "<strong>Scientific Name:</strong> Not Specified<br/><strong>Habitat:</strong> Not Specified<br/><strong>Medicinal Uses:</strong> Not Specified<br/><strong>Cultivation:</strong> Not Specified",
+            description: "<strong>Scientific Name:</strong> Cuminum cyminum<br/><strong>Habitat:</strong> Native to the eastern Mediterranean and South Asia.<br/><strong>Medicinal Uses:</strong> Aids digestion, reduces bloating, and has anti-microbial properties. Cumin is also known for its antioxidant effects.<br/><strong>Cultivation:</strong> Prefers well-drained soil and full sun; can be grown from seeds. Cumin requires a warm growing season and is sensitive to frost.",
             rotation: [Math.PI, Math.PI/-2, Math.PI/6],
         },
         {
-            name: "Plant ",
+            name: "Licorice",
             position: useMemo(() => convertToCartesian(earthRadius + 0.2, Math.PI/5, Math.PI/-4), []),
             model: <Plant9 />,
-            description: "<strong>Scientific Name:</strong> Not Specified<br/><strong>Habitat:</strong> Not Specified<br/><strong>Medicinal Uses:</strong> Not Specified<br/><strong>Cultivation:</strong> Not Specified",
+            description: "<strong>Scientific Name:</strong> Glycyrrhiza glabra<br/><strong>Habitat:</strong> Native to Southern Europe and Western Asia.<br/><strong>Medicinal Uses:</strong> Soothes digestive issues, reduces inflammation, and has anti-viral properties. Licorice is often used to relieve sore throats and respiratory issues.<br/><strong>Cultivation:</strong> Requires well-drained soil and full sun. Licorice is typically grown from seeds or root cuttings and needs a warm growing season.",
             rotation: [Math.PI/3, Math.PI/2, 0],
         },
         {
             name: "Peppermint",
-            position: useMemo(() => convertToCartesian(earthRadius + 0.1, Math.PI/4, Math.PI/-2 ), []),
+            position: useMemo(() => convertToCartesian(earthRadius + 0.1, Math.PI/4, Math.PI/-2), []),
             model: <Plant10 />,
-            description: "<strong>Scientific Name:</strong> Mentha × piperita<br/><strong>Habitat:</strong> Native to Europe and North America.<br/><strong>Medicinal Uses:</strong> Relieves indigestion, bloating, and gas; soothes gastrointestinal discomfort.<br/><strong>Cultivation:</strong> Grows in moist, well-drained soil; prefers partial shade to full sun.",
+            description: "<strong>Scientific Name:</strong> Mentha × piperita<br/><strong>Habitat:</strong> Native to Europe and North America.<br/><strong>Medicinal Uses:</strong> Relieves digestive issues, reduces gas, and has soothing properties for headaches. Peppermint is commonly used in teas and essential oils.<br/><strong>Cultivation:</strong> Prefers moist, well-drained soil and partial shade to full sun. Peppermint can be grown from seeds or cuttings and is invasive, so it’s often grown in containers.",
             rotation: [60, 0, Math.PI/4],
         },
     ];
+    
     
     
 
@@ -123,18 +124,41 @@ function Hero() {
             setTitle(plant.name);
             setText(plant.description);
             setPlantModel(plant.model);
-            setPopup(true);
             setCameraPosition([plant.position[0], plant.position[1], plant.position[2] - 1.5]);
         }
     }, [searchQuery]);
 
-    const handleClick = (plantType, model, position) => {
-        setTitle(plantType);
-        setText(plants.find(plant => plant.name === plantType).description || "Information not available.");
-        setPlantModel(model);
-        setPopup(true);
-        setCameraPosition([position[0], position[1], position[2] - 1.5]);
-    };
+    
+const checkIfBookmarked = async (plantName) => {
+    if (!user || !user.email) {
+        alert('User is not logged in or email is missing.');
+        return;
+    }
+
+    try {
+        const response = await axios.get('http://localhost:3000/bookmark', {
+            params: { email: user.email }
+        });
+
+        const bookmarkedPlants = response.data;
+        const isBookmarked = bookmarkedPlants.some(plant => plant.plantname === plantName);
+        setIsBookmarked(isBookmarked);
+    } catch (error) {
+        console.error('Error checking if plant is bookmarked:', error);
+        alert('Failed to check if plant is bookmarked.');
+    }
+};
+
+// Update the handleClick function
+const handleClick = async (plantType, model, position) => {
+    setTitle(plantType);
+    setText(plants.find(plant => plant.name === plantType).description || "Information not available.");
+    setPlantModel(model);
+    setPopup(true);
+    setCameraPosition([position[0], position[1], position[2] - 1.5]); // Adjust camera zoom position
+
+    await checkIfBookmarked(plantType); // Check if the plant is bookmarked
+};
 
     const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -172,7 +196,7 @@ function Hero() {
     return (
         <>
             <div className="absolute inset-0 z-10 w-full h-20 bg-gray-800 flex items-center justify-between px-8 shadow-3xl">
-                <h1 className="text-3xl font-bold text-white">Plant Model</h1>
+                <h1 className="text-3xl font-bold text-white">Digestive Health</h1>
                 <div className="relative">
                     <Link to="/bookmark">
                         <button className="text-lg font-bold mr-5 text-white">Bookmark</button>
@@ -196,7 +220,7 @@ function Hero() {
             </div>
 
             <div className="hero-container w-full h-full md:h-screen flex flex-col md:flex-row pt-20">
-                <div className="w-full md:w-8/12 h-full">
+                <div className={`w-full h-full ${popup ? 'md:w-8/12' : 'md:w-full'}`}>
                     <Canvas camera={{ position: cameraPosition }}>
                         <ambientLight intensity={2} />
                         <OrbitControls enableZoom={false} />
@@ -220,7 +244,7 @@ function Hero() {
                         <ContactShadows position={[0, -2, 0]} opacity={0.5} scale={50} color={'#000000'} />
                     </Canvas>
                 </div>
-                <div className="w-full md:w-4/12 h-full md:h-full bg-gray-500 flex flex-col items-center justify-start p-4 overflow-y-scroll">
+                <div className={`w-full md:w-4/12 h-full md:h-full bg-gray-500 flex flex-col items-center justify-start p-4 overflow-y-scroll ${popup ? '' : 'hidden'}`}>
                     {popup && (
                         <>
                             <h2 className="text-xl font-bold mb-4 flex justify-around items-center gap-20 text-white">

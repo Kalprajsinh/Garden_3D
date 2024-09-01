@@ -29,6 +29,8 @@ function Garden2() {
     const [plantModel, setPlantModel] = useState(null);
     const [cameraPosition, setCameraPosition] = useState([0, 0, 2.5]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [notePopup, setNotePopup] = useState(false);
+    const [noteText, setNoteText] = useState("");
 
     const convertToCartesian = (radius, theta, phi) => {
         const x = radius * Math.sin(phi) * Math.cos(theta);
@@ -192,19 +194,42 @@ function Garden2() {
             setTitle(plant.name);
             setText(plant.description);
             setPlantModel(plant.model);
-            setPopup(true);
             setCameraPosition([plant.position[0], plant.position[1], plant.position[2] - 1.5]); // Adjust camera zoom position
         }
     }, [searchQuery]);
     
 
-    const handleClick = (plantType, model, position) => {
-        setTitle(plantType);
-        setText(plants.find(plant => plant.name === plantType).description || "Information not available.");
-        setPlantModel(model);
-        setPopup(true);
-        setCameraPosition([position[0], position[1], position[2] - 1.5]); // Adjust camera zoom position
-    };
+    
+const checkIfBookmarked = async (plantName) => {
+    if (!user || !user.email) {
+        alert('User is not logged in or email is missing.');
+        return;
+    }
+
+    try {
+        const response = await axios.get('http://localhost:3000/bookmark', {
+            params: { email: user.email }
+        });
+
+        const bookmarkedPlants = response.data;
+        const isBookmarked = bookmarkedPlants.some(plant => plant.plantname === plantName);
+        setIsBookmarked(isBookmarked);
+    } catch (error) {
+        console.error('Error checking if plant is bookmarked:', error);
+        alert('Failed to check if plant is bookmarked.');
+    }
+};
+
+// Update the handleClick function
+const handleClick = async (plantType, model, position) => {
+    setTitle(plantType);
+    setText(plants.find(plant => plant.name === plantType).description || "Information not available.");
+    setPlantModel(model);
+    setPopup(true);
+    setCameraPosition([position[0], position[1], position[2] - 1.5]); // Adjust camera zoom position
+
+    await checkIfBookmarked(plantType); // Check if the plant is bookmarked
+};
 
     const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -229,6 +254,15 @@ function Garden2() {
             alert('Failed to bookmark plant.');
         }
     };    
+
+    const handleAddNote = () => {
+        setNotePopup(true);
+    };
+
+    const handleSaveNote = () => {
+        alert(`Note saved: ${noteText}`);
+        setNotePopup(false);
+    };
 
     return (
         <>
@@ -257,7 +291,7 @@ function Garden2() {
             </div>
     
             <div className="hero-container w-full h-full md:h-screen flex flex-col md:flex-row pt-20">
-                <div className="w-full md:w-8/12 h-full">
+                <div className={`w-full h-full ${popup ? 'md:w-8/12' : 'md:w-full'}`}>
                     <Canvas camera={{ position: cameraPosition }}>
                         <ambientLight intensity={2} />
                         <OrbitControls enableZoom={false} />
@@ -281,18 +315,27 @@ function Garden2() {
                         <ContactShadows position={[0, -2, 0]} opacity={0.5} scale={50} color={'#000000'} />
                     </Canvas>
                 </div>
-                <div className="w-full md:w-4/12 h-full md:h-full bg-gray-500 flex flex-col items-center justify-start p-4 overflow-y-scroll">
+                <div className={`w-full md:w-4/12 h-full md:h-full bg-gray-500 flex flex-col items-center justify-start p-4 overflow-y-scroll ${popup ? '' : 'hidden'}`}>
             {popup && (
                 <>
                     <h2 className="text-xl font-bold mb-4 flex justify-around items-center gap-20 text-white">
                         <div>{title}</div>
+                        <div className=" flex gap-5">
+
                             <button
-                        onClick={handleBookmark}
-                        className={`py-2 px-4 rounded ${isBookmarked ? 'bg-gray-500' : 'bg-blue-500'} text-white text-sm`}
-                        disabled={isBookmarked}
-                    >
-                        {isBookmarked ? 'Bookmarked' : 'Bookmark'}
-                    </button>
+                                onClick={handleBookmark}
+                                className={`py-2 px-4 rounded ${isBookmarked ? 'bg-gray-500' : 'bg-blue-500'} text-white text-sm`}
+                                disabled={isBookmarked}
+                                >
+                                {isBookmarked ? 'Bookmarked' : 'Bookmark'}
+                            </button>
+                            <button
+                                onClick={handleAddNote}
+                                className="py-2 px-4 rounded bg-green-500 text-white text-sm"
+                                >
+                                Add Note
+                            </button>
+                                </div>
                     </h2>
                     <hr />
                     <div className="w-full h-2/3 mb-4">
@@ -315,6 +358,34 @@ function Garden2() {
             )}
         </div>
             </div>
+
+            {notePopup && (
+                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3">
+                        <h2 className="text-xl font-bold mb-4">Add Note</h2>
+                        <textarea
+                            className="w-full h-40 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300"
+                            value={noteText}
+                            onChange={(e) => setNoteText(e.target.value)}
+                            placeholder="Write your note here..."
+                        ></textarea>
+                        <div className="mt-4 flex justify-end space-x-2">
+                            <button
+                                className="py-2 px-4 rounded bg-gray-500 text-white"
+                                onClick={() => setNotePopup(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className="py-2 px-4 rounded bg-green-500 text-white"
+                                onClick={handleSaveNote}
+                            >
+                                Save Note
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );    
 }
